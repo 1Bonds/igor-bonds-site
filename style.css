@@ -1,14 +1,14 @@
 /* Reset e Estilos Globais */
 :root {
-  --primary-color: #00a78e; /* Kept your teal for icons/accents */
+  --primary-color: #00a78e;
   --primary-dark: #008c76;
-  --secondary-color: #1E3A8A; /* Updated to align with .botao */
+  --secondary-color: #1E3A8A;
   --light-color: #F3F4F6;
   --dark-color: #343a40;
   --text-color: #333;
   --text-light: #6c757d;
   --white: #FFFFFF;
-  --accent-color: #3B82F6; /* For hovers, from .botao */
+  --accent-color: #3B82F6;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
 }
@@ -64,7 +64,7 @@ section {
   background-color: var(--white);
 }
 
-/* Button Style (from your input) */
+/* Button Style */
 .botao {
   display: inline-block;
   background-color: #1E3A8A;
@@ -217,11 +217,28 @@ header .container {
 
 /* Hero Section */
 .hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, var(--white) 0%, var(--light-color) 100%);
   padding: 80px 20px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
 }
 
 .hero .container {
@@ -278,6 +295,18 @@ header .container {
   gap: 50px;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
 .about-text {
@@ -345,8 +374,8 @@ header .container {
 }
 
 .service-icon {
-  font-size: 2.5rem;
-  color: var(--primary-color);
+  width: 60px;
+  height: 60px;
   margin-bottom: 20px;
 }
 
@@ -377,6 +406,7 @@ header .container {
   overflow: hidden;
   transition: var(--transition);
   box-shadow: var(--box-shadow);
+  cursor: pointer;
 }
 
 .projeto-card:hover {
@@ -405,18 +435,59 @@ header .container {
   margin-bottom: 15px;
 }
 
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-image {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 8px;
+}
+
+.lightbox-caption {
+  color: var(--white);
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
 /* Depoimentos */
 .testimonials {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  display: flex;
+  overflow: hidden;
+  transition: transform 0.5s ease;
 }
 
 .testimonial-card {
+  display: flex;
+  flex: 0 0 100%;
   background: var(--white);
   padding: 30px;
   border-radius: 8px;
-  text-align: center;
   transition: var(--transition);
   box-shadow: var(--box-shadow);
 }
@@ -424,6 +495,19 @@ header .container {
 .testimonial-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.testimonial-content {
+  flex: 1;
+  min-width: 200px;
 }
 
 .testimonial-content p {
@@ -454,6 +538,13 @@ header .container {
   min-width: 300px;
 }
 
+.contact-illustration {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
 .contact-info h3 {
   margin-bottom: 20px;
   color: var(--secondary-color);
@@ -479,8 +570,9 @@ header .container {
   color: var(--accent-color);
 }
 
-.contact-link i {
-  font-size: 1.2rem;
+.contact-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .contact-form {
@@ -684,12 +776,31 @@ footer {
     flex-direction: column;
   }
 
+  .about-image {
+    order: -1;
+  }
+
   .contact-content {
     flex-direction: column;
   }
 
   .section-title {
     font-size: 2rem;
+  }
+
+  .testimonial-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .testimonial-avatar {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .testimonials {
+    flex-direction: row;
   }
 }
 
@@ -712,5 +823,14 @@ footer {
     width: 50px;
     height: 50px;
     font-size: 1.5rem;
+  }
+
+  .service-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .lightbox-image {
+    max-width: 95%;
   }
 }
