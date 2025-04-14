@@ -83,11 +83,51 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Form submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
+  contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Here you would typically send the form data to a server
-    alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
-    this.reset();
+    const formData = new FormData(this);
+    try {
+      await fetch(this.action, { method: 'POST', body: formData });
+      alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+      this.reset();
+    } catch {
+      alert('Erro ao enviar. Tente novamente.');
+    }
   });
 }
+
+// Testimonial Carousel
+const testimonials = document.querySelector('.testimonials');
+let index = 0;
+setInterval(() => {
+  index = (index + 1) % 2; // 2 testimonials
+  testimonials.style.transform = `translateX(-${index * 100}%)`;
+}, 5000);
+
+// Portfolio Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.querySelector('.lightbox-image');
+const lightboxCaption = document.querySelector('.lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+document.querySelectorAll('.projeto-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const imgSrc = card.querySelector('.project-image').src;
+    const caption = card.querySelector('h3').textContent;
+    lightboxImage.src = imgSrc;
+    lightboxImage.alt = `Projeto: ${caption}`;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.add('active');
+  });
+});
+
+lightboxClose.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove('active');
+  }
+});
