@@ -7,6 +7,10 @@ window.addEventListener('load', function() {
       loading.style.display = 'none';
     }, 500);
   }, 1000);
+
+  // Destacar "Home" como ativo por padrão ao carregar a página
+  const homeLink = document.querySelector('.nav-link[href="#home"]');
+  if (homeLink) homeLink.classList.add('active');
 });
 
 // Header Scroll Effect
