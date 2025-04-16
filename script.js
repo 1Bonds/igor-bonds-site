@@ -1,5 +1,5 @@
 // Loading Screen
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   const loading = document.getElementById('loading');
   setTimeout(() => {
     loading.style.opacity = '0';
@@ -7,14 +7,10 @@ window.addEventListener('load', function() {
       loading.style.display = 'none';
     }, 500);
   }, 1000);
-
-  // Destacar "Home" como ativo por padrão ao carregar a página
-  const homeLink = document.querySelector('.nav-link[href="#home"]');
-  if (homeLink) homeLink.classList.add('active');
 });
 
 // Header Scroll Effect
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
   const header = document.querySelector('header');
   if (window.scrollY > 50) {
     header.classList.add('scrolled');
@@ -27,7 +23,7 @@ window.addEventListener('scroll', function() {
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', function() {
+hamburger.addEventListener('click', function () {
   this.classList.toggle('active');
   navLinks.classList.toggle('active');
 });
@@ -42,12 +38,12 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  anchor.addEventListener('click', function (e) {
     e.preventDefault();
-    
+
     const targetId = this.getAttribute('href');
     const targetElement = document.querySelector(targetId);
-    
+
     if (targetElement) {
       window.scrollTo({
         top: targetElement.offsetTop - 80,
@@ -61,18 +57,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const sections = document.querySelectorAll('section');
 const navItems = document.querySelectorAll('.nav-link');
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
   let current = '';
-  
+
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
-    
+
     if (pageYOffset >= sectionTop - 200) {
       current = section.getAttribute('id');
     }
   });
-  
+
   navItems.forEach(item => {
     item.classList.remove('active');
     if (item.getAttribute('href') === `#${current}`) {
@@ -84,19 +80,28 @@ window.addEventListener('scroll', function() {
 // Set current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Form submission
+// Form submission com tratamento de resposta
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-  contactForm.addEventListener('submit', async function(e) {
+  contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
+
     const formData = new FormData(this);
     try {
-      await fetch(this.action, { method: 'POST', body: formData });
-      alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
-      this.reset();
-    } catch {
-      alert('Erro ao enviar. Tente novamente.');
+      const response = await fetch(this.action, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+        this.reset();
+      } else {
+        alert('Erro ao enviar. Tente novamente.');
+      }
+    } catch (error) {
+      alert('Erro de conexão. Verifique sua internet e tente novamente.');
+      console.error(error);
     }
   });
 }
