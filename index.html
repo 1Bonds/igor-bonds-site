@@ -6,23 +6,64 @@
   <meta name="description" content="Igor Bonds - Soluções inovadoras em tecnologia da informação para empresas. Desenvolvimento web, consultoria e mais." />
   <meta name="keywords" content="tecnologia, desenvolvimento web, consultoria TI, soluções digitais, Igor Bonds" />
   <meta name="author" content="Igor Bonds" />
-  <!-- Open Graph Tags -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Igor Bonds | Tecnologia da Informação" />
   <meta property="og:description" content="Soluções inovadoras em tecnologia para o seu negócio." />
-  <meta property="og:image" content="https://via.placeholder.com/1200x630" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=1200&h=630" />
   <meta property="og:url" content="https://1bonds.github.io" />
+  <meta property="og:type" content="website" />
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Igor Bonds | Tecnologia da Informação" />
+  <meta name="twitter:description" content="Soluções inovadoras em tecnologia para o seu negócio." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=1200&h=630" />
+  <!-- Preload -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" as="style" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
   <title>Igor Bonds | Tecnologia da Informação</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Igor Bonds",
+      "url": "https://1bonds.github.io",
+      "logo": "https://1bonds.github.io/assets/favicon.ico",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-11-1234-5678",
+        "contactType": "customer service",
+        "email": "contact@igorbonds.com"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua da Tecnologia, 123",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "postalCode": "12345-678",
+        "addressCountry": "BR"
+      }
+    }
+  </script>
 </head>
 <body>
+  <!-- Skip to Content -->
+  <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
   <!-- Barra de progresso -->
   <div id="progress-bar"></div>
 
   <!-- Tela de carregamento -->
-  <div id="loading" aria-hidden="true">Carregando...</div>
+  <div id="loading" aria-hidden="true">
+    <svg class="spinner" viewBox="0 0 50 50">
+      <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    </svg>
+  </div>
 
   <!-- Cabeçalho -->
   <header>
@@ -35,29 +76,29 @@
           <span></span>
         </button>
         <ul class="nav-links">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#sobre" class="nav-link">Sobre</a></li>
-          <li><a href="#servicos" class="nav-link">Serviços</a></li>
-          <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
-          <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
-          <li><a href="#blog" class="nav-link">Blog</a></li>
-          <li><a href="#contato" class="nav-link">Contato</a></li>
+          <li><a href="#home" class="nav-link active" data-tooltip="Página Inicial">Home</a></li>
+          <li><a href="#sobre" class="nav-link" data-tooltip="Quem Somos">Sobre</a></li>
+          <li><a href="#servicos" class="nav-link" data-tooltip="Nossos Serviços">Serviços</a></li>
+          <li><a href="#portfolio" class="nav-link" data-tooltip="Projetos Realizados">Portfólio</a></li>
+          <li><a href="#depoimentos" class="nav-link" data-tooltip="O que Dizem">Depoimentos</a></li>
+          <li><a href="#blog" class="nav-link" data-tooltip="Notícias e Artigos">Blog</a></li>
+          <li><a href="#contato" class="nav-link" data-tooltip="Fale Conosco">Contato</a></li>
         </ul>
       </nav>
-      <button id="theme-toggle" aria-label="Alternar entre modo claro e escuro">
+      <button id="theme-toggle" aria-label="Alternar entre modo claro e escuro" data-tooltip="Mudar Tema">
         <i class="fas fa-moon"></i>
       </button>
     </div>
   </header>
 
   <!-- Conteúdo principal -->
-  <main>
+  <main id="main-content">
     <!-- Hero Section -->
     <section id="home" class="hero section-anim" role="region" aria-labelledby="home-title">
       <div class="hero-content">
         <h1 id="home-title">Soluções em Tecnologia para o Seu Negócio</h1>
         <p>Transformamos ideias em realidade com inovação e qualidade.</p>
-        <a href="#contato" class="cta-button">Entre em Contato</a>
+        <a href="#contato" class="cta-button" data-tooltip="Fale Conosco">Entre em Contato</a>
       </div>
     </section>
 
@@ -105,12 +146,27 @@
         <div class="portfolio-grid">
           <div class="project" data-image="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382" data-caption="Plataforma E-commerce" data-thumbnail="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=100&h=60" data-category="web">
             <img src="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=300&h=200" alt="Plataforma E-commerce" loading="lazy" />
+            <div class="project-overlay">
+              <button class="share-btn" data-tooltip="Compartilhar Projeto" aria-label="Compartilhar projeto">
+                <i class="fas fa-share-alt"></i>
+              </button>
+            </div>
           </div>
           <div class="project" data-image="https://images.unsplash.com/photo-1551288049-b1f3c3153758" data-caption="App de Produtividade" data-thumbnail="https://images.unsplash.com/photo-1551288049-b1f3c3153758?fit=crop&w=100&h=60" data-category="mobile">
             <img src="https://images.unsplash.com/photo-1551288049-b1f3c3153758?fit=crop&w=300&h=200" alt="App de Produtividade" loading="lazy" />
+            <div class="project-overlay">
+              <button class="share-btn" data-tooltip="Compartilhar Projeto" aria-label="Compartilhar projeto">
+                <i class="fas fa-share-alt"></i>
+              </button>
+            </div>
           </div>
           <div class="project" data-image="https://images.unsplash.com/photo-1498050108023-c5249f4df085" data-caption="Site Corporativo" data-thumbnail="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=100&h=60" data-category="web">
             <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=300&h=200" alt="Site Corporativo" loading="lazy" />
+            <div class="project-overlay">
+              <button class="share-btn" data-tooltip="Compartilhar Projeto" aria-label="Compartilhar projeto">
+                <i class="fas fa-share-alt"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -132,21 +188,12 @@
     <section id="blog" class="section-anim" role="region" aria-labelledby="blog-title">
       <div class="container">
         <h2 id="blog-title">Últimas Notícias</h2>
-        <div class="blog-grid">
-          <div class="blog-card">
-            <img src="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=300&h=200" alt="Artigo sobre tecnologia" loading="lazy" />
-            <h3>Como a IA está Transformando Negócios</h3>
-            <p>Descubra como a inteligência artificial pode impulsionar sua empresa.</p>
-            <a href="#" class="blog-link">Leia Mais</a>
-          </div>
-          <div class="blog-card">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=300&h=200" alt="Artigo sobre web" loading="lazy" />
-            <h3>5 Tendências em Desenvolvimento Web</h3>
-            <p>Fique por dentro das novidades que estão moldando a web.</p>
-            <a href="#" class="blog-link">Leia Mais</a>
-          </div>
+        <div class="blog-search">
+          <input type="text" id="blog-search" placeholder="Pesquisar artigos..." aria-label="Pesquisar artigos no blog" />
+          <i class="fas fa-search"></i>
         </div>
-        <a href="#" class="cta-button">Ver Mais Artigos</a>
+        <div class="blog-grid" id="blog-grid"></div>
+        <a href="#" class="cta-button" data-tooltip="Ver Todos os Artigos">Ver Mais Artigos</a>
       </div>
     </section>
 
@@ -160,9 +207,7 @@
             <p><i class="fas fa-map-marker-alt"></i> Rua da Tecnologia, 123, São Paulo, SP</p>
             <p><i class="fas fa-phone"></i> (11) 1234-5678</p>
             <p><i class="fas fa-envelope"></i> contact@igorbonds.com</p>
-            <div class="map-container">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.123456789!2d-46.654321!3d-23.565432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8c8c8c8c8%3A0x1234567890!2sS%C3%A3o%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+            <div class="map-container" id="map" style="height: 300px;"></div>
           </div>
           <form class="contact-form" action="https://formspree.io/f/your-id" method="POST" novalidate>
             <div class="form-group">
@@ -180,7 +225,7 @@
               <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
               <span class="form-error" aria-hidden="true"></span>
             </div>
-            <button type="submit" class="botao">Enviar</button>
+            <button type="submit" class="botao" data-tooltip="Enviar Mensagem">Enviar</button>
             <div class="form-message" aria-live="polite"></div>
           </form>
         </div>
@@ -204,10 +249,10 @@
   </div>
 
   <!-- Botão Voltar ao Topo -->
-  <button id="back-to-top" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <button id="back-to-top" aria-label="Voltar ao topo" data-tooltip="Voltar ao Topo"><i class="fas fa-arrow-up"></i></button>
 
   <!-- Botão WhatsApp -->
-  <a href="https://wa.me/1234567890" class="whatsapp-button" aria-label="Fale conosco pelo WhatsApp">
+  <a href="https://wa.me/1234567890" class="whatsapp-button" aria-label="Fale conosco pelo WhatsApp" data-tooltip="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
@@ -216,14 +261,15 @@
     <div class="container">
       <p>© <span id="year"></span> Igor Bonds. Todos os direitos reservados.</p>
       <div class="footer-links">
-        <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:contact@igorbonds.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://facebook.com" aria-label="Facebook" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://linkedin.com" aria-label="LinkedIn" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:contact@igorbonds.com" aria-label="Email" data-tooltip="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </footer>
 
-  <!-- Script JS -->
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
