@@ -2,7 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // Atualizar ano no rodapé
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Menu responsivo (hamburger)
+  // Modo escuro
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  body.dataset.theme = savedTheme;
+  themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
+  themeToggle.addEventListener('click', () => {
+    const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
+    body.dataset.theme = newTheme;
+    localStorage.setItem('theme', newTheme);
+    themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  });
+
+  // Barra de progresso
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    document.getElementById('progress-bar').style.width = `${scrollPercent}%`;
+  });
+
+  // Menu responsivo
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
 
@@ -187,9 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Validação do formulário
+  // Validação do formulário com Formspree
   const form = document.querySelector('.contact-form');
-  form.addEventListener('submit', e => {
+  const formMessage = document.querySelector('.form-message');
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     let isValid = true;
 
@@ -207,7 +231,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (isValid) {
-      form.submit();
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          formMessage.textContent = 'Mensagem enviada com sucesso!';
+          formMessage.classList.add('success');
+          form.reset();
+        } else {
+          formMessage.textContent = 'Erro ao enviar a mensagem. Tente novamente.';
+        }
+      } catch (error) {
+        formMessage.textContent = 'Erro de conexão. Verifique sua internet.';
+      }
     }
   });
 
