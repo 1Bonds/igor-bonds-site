@@ -6,6 +6,14 @@
   --text-color: #0d1b2a; /* Texto escuro */
   --light-color: #ffffff; /* Branco */
   --dark-color: #000000; /* Preto */
+  --dark-bg: #1e2a44; /* Fundo modo escuro */
+  --dark-text: #e0e1dd; /* Texto modo escuro */
+}
+
+[data-theme="dark"] {
+  --background-color: var(--dark-bg);
+  --text-color: var(--dark-text);
+  --light-color: #2e3b55;
 }
 
 * {
@@ -20,6 +28,18 @@ body {
   color: var(--text-color);
   scroll-behavior: smooth;
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: var(--secondary-color);
+  z-index: 3000;
+  transition: width 0.2s ease;
 }
 
 .container {
@@ -98,8 +118,21 @@ header .container {
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
+#theme-toggle {
+  background: none;
+  border: none;
+  color: var(--light-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1);
+}
+
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x600') center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=1920&h=600') center/cover no-repeat;
   color: var(--light-color);
   text-align: center;
   padding: 150px 20px;
@@ -109,11 +142,13 @@ header .container {
 .hero-content h1 {
   font-size: 3rem;
   margin-bottom: 20px;
+  animation: slideIn 1s ease-out;
 }
 
 .hero-content p {
   font-size: 1.2rem;
   margin-bottom: 30px;
+  animation: slideIn 1s ease-out 0.2s;
 }
 
 .cta-button {
@@ -124,6 +159,7 @@ header .container {
   text-decoration: none;
   font-weight: 700;
   transition: background-color 0.3s ease;
+  animation: slideIn 1s ease-out 0.4s;
 }
 
 .cta-button:hover,
@@ -174,6 +210,12 @@ h2 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease;
+}
+
+.service-card i {
+  font-size: 2rem;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
 }
 
 .service-card:hover {
@@ -253,9 +295,84 @@ h2 {
   opacity: 1;
 }
 
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.blog-card {
+  background-color: var(--light-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.blog-card h3 {
+  color: var(--primary-color);
+  padding: 15px;
+  font-size: 1.2rem;
+}
+
+.blog-card p {
+  padding: 0 15px 15px;
+  font-size: 0.9rem;
+}
+
+.blog-link {
+  display: block;
+  padding: 10px 15px;
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.blog-link:hover {
+  color: var(--primary-color);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.contact-info h3 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-info i {
+  color: var(--secondary-color);
+}
+
+.map-container {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 .contact-form {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 100%;
 }
 
 .form-group {
@@ -295,6 +412,16 @@ h2 {
   position: absolute;
   bottom: -20px;
   left: 0;
+}
+
+.form-message {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.form-message.success {
+  color: #2e7d32;
 }
 
 .form-group.invalid .form-error {
@@ -405,19 +532,31 @@ h2 {
 }
 
 .lightbox-prev,
+.lightbox-next,
+.lightbox-close {
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--light-color);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.lightbox-prev,
 .lightbox-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: var(--light-color);
-  font-size: 2rem;
   padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+  font-size: 1.5rem;
   opacity: 0.7;
-  transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover,
+.lightbox-close:hover {
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 1;
 }
 
 .lightbox-prev {
@@ -428,31 +567,17 @@ h2 {
   right: 10px;
 }
 
-#lightbox:hover .lightbox-prev,
-#lightbox:hover .lightbox-next {
-  opacity: 1;
-}
-
-.lightbox-prev:hover,
-.lightbox-next:hover,
-.lightbox-close:hover {
-  background: rgba(0, 0, 0, 0.7);
-}
-
 .lightbox-close {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 1.8rem;
-  color: var(--light-color);
-  cursor: pointer;
-  background: none;
-  border: none;
+  font-size: 1.5rem;
+  padding: 5px 10px;
 }
 
 #back-to-top {
   position: fixed;
-  bottom: 20px;
+  bottom: 80px;
   left: 20px;
   background-color: var(--secondary-color);
   color: var(--light-color);
@@ -486,11 +611,8 @@ h2 {
   justify-content: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-}
-
-.whatsapp-button img {
-  width: 40px;
-  height: 40px;
+  font-size: 2rem;
+  color: var(--light-color);
 }
 
 .whatsapp-button:hover,
@@ -520,12 +642,24 @@ footer .container {
 .footer-links a {
   color: var(--light-color);
   text-decoration: none;
-  font-weight: 400;
+  font-size: 1.2rem;
   transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
   color: var(--secondary-color);
+}
+
+/* Animações */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Media Queries */
@@ -562,6 +696,10 @@ footer .container {
     font-size: 1rem;
   }
 
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
   .lightbox-prev,
   .lightbox-next {
     opacity: 1;
@@ -585,11 +723,7 @@ footer .container {
   #back-to-top {
     width: 50px;
     height: 50px;
-  }
-
-  .whatsapp-button img {
-    width: 30px;
-    height: 30px;
+    font-size: 1.5rem;
   }
 
   .lightbox-image {
