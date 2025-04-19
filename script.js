@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.classList.toggle('active');
   });
 
-  // Fechar menu ao clicar em um link
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('active');
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Animação ao rolar (scroll reveal)
+  // Animação ao rolar
   const animatedSections = document.querySelectorAll('.section-anim');
   const observer = new IntersectionObserver(
     entries => {
@@ -38,6 +37,41 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(section);
   });
 
+  // Carrossel de depoimentos
+  const testimonials = document.querySelectorAll('.testimonial');
+  let currentTestimonial = 0;
+
+  function showTestimonial(index) {
+    testimonials.forEach((testimonial, i) => {
+      testimonial.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextTestimonial() {
+    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+    showTestimonial(currentTestimonial);
+  }
+
+  showTestimonial(currentTestimonial);
+  setInterval(nextTestimonial, 5000);
+
+  // Filtros do portfólio
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projects = document.querySelectorAll('.project');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      projects.forEach(project => {
+        const category = project.dataset.category;
+        project.style.display = filter === 'all' || filter === category ? 'block' : 'none';
+      });
+    });
+  });
+
   // Lightbox do portfólio
   const lightbox = document.getElementById('lightbox');
   const lightboxContent = document.querySelector('.lightbox-content');
@@ -48,28 +82,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxClose = document.querySelector('.lightbox-close');
   const lightboxPrev = document.querySelector('.lightbox-prev');
   const lightboxNext = document.querySelector('.lightbox-next');
-  const projects = document.querySelectorAll('.project');
   let currentIndex = 0;
+  let isZoomed = false;
 
-  // Função para atualizar o lightbox
   function updateLightbox(index) {
     currentIndex = index;
+    const visibleProjects = Array.from(projects).filter(p => p.style.display !== 'none');
+    if (visibleProjects.length === 0) return;
     lightboxImage.classList.add('fade');
     setTimeout(() => {
-      lightboxImage.src = projects[index].dataset.image;
-      lightboxCaption.textContent = projects[index].dataset.caption;
-      lightboxCounter.textContent = `Imagem ${index + 1} de ${projects.length}`;
+      lightboxImage.src = visibleProjects[index].dataset.image;
+      lightboxCaption.textContent = visibleProjects[index].dataset.caption;
+      lightboxCounter.textContent = `Imagem ${index + 1} de ${visibleProjects.length}`;
       lightboxImage.classList.remove('fade');
-      updateThumbnails();
+      updateThumbnails(visibleProjects);
     }, 300);
     lightbox.setAttribute('aria-hidden', 'false');
     lightbox.focus();
   }
 
-  // Função para criar e atualizar miniaturas
-  function updateThumbnails() {
+  function updateThumbnails(visibleProjects) {
     lightboxThumbnails.innerHTML = '';
-    projects.forEach((project, index) => {
+    visibleProjects.forEach((project, index) => {
       const thumb = document.createElement('img');
       thumb.src = project.dataset.thumbnail;
       thumb.alt = `Miniatura do projeto ${index + 1}`;
@@ -82,51 +116,58 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Abrir lightbox ao clicar em um projeto
   projects.forEach((project, index) => {
     project.addEventListener('click', () => {
       updateLightbox(index);
     });
   });
 
-  // Fechar lightbox
   lightboxClose.addEventListener('click', () => {
     lightbox.setAttribute('aria-hidden', 'true');
+    isZoomed = false;
+    lightboxImage.classList.remove('zoomed');
   });
 
-  // Fechar lightbox ao clicar fora da imagem
   lightbox.addEventListener('click', e => {
     if (e.target === lightbox) {
       lightbox.setAttribute('aria-hidden', 'true');
+      isZoomed = false;
+      lightboxImage.classList.remove('zoomed');
     }
   });
 
-  // Navegação para a imagem anterior
   lightboxPrev.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + projects.length) % projects.length;
+    const visibleProjects = Array.from(projects).filter(p => p.style.display !== 'none');
+    currentIndex = (currentIndex - 1 + visibleProjects.length) % visibleProjects.length;
     updateLightbox(currentIndex);
   });
 
-  // Navegação para a próxima imagem
   lightboxNext.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % projects.length;
+    const visibleProjects = Array.from(projects).filter(p => p.style.display !== 'none');
+    currentIndex = (currentIndex + 1) % visibleProjects.length;
     updateLightbox(currentIndex);
   });
 
-  // Navegação por teclado
+  lightboxImage.addEventListener('click', () => {
+    isZoomed = !isZoomed;
+    lightboxImage.classList.toggle('zoomed', isZoomed);
+  });
+
   lightbox.addEventListener('keydown', e => {
+    const visibleProjects = Array.from(projects).filter(p => p.style.display !== 'none');
     if (e.key === 'ArrowLeft') {
-      currentIndex = (currentIndex - 1 + projects.length) % projects.length;
+      currentIndex = (currentIndex - 1 + visibleProjects.length) % visibleProjects.length;
       updateLightbox(currentIndex);
     } else if (e.key === 'ArrowRight') {
-      currentIndex = (currentIndex + 1) % projects.length;
+      currentIndex = (currentIndex + 1) % visibleProjects.length;
       updateLightbox(currentIndex);
     } else if (e.key === 'Escape') {
       lightbox.setAttribute('aria-hidden', 'true');
+      isZoomed = false;
+      lightboxImage.classList.remove('zoomed');
     }
   });
 
-  // Suporte a swipe (toque)
   let touchStartX = 0;
   let touchEndX = 0;
 
@@ -136,16 +177,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
   lightboxContent.addEventListener('touchend', e => {
     touchEndX = e.changedTouches[0].screenX;
+    const visibleProjects = Array.from(projects).filter(p => p.style.display !== 'none');
     if (touchEndX < touchStartX - 50) {
-      currentIndex = (currentIndex + 1) % projects.length;
+      currentIndex = (currentIndex + 1) % visibleProjects.length;
       updateLightbox(currentIndex);
     } else if (touchEndX > touchStartX + 50) {
-      currentIndex = (currentIndex - 1 + projects.length) % projects.length;
+      currentIndex = (currentIndex - 1 + visibleProjects.length) % visibleProjects.length;
       updateLightbox(currentIndex);
     }
   });
 
-  // Esconder tela de carregamento após o carregamento
+  // Validação do formulário
+  const form = document.querySelector('.contact-form');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let isValid = true;
+
+    form.querySelectorAll('.form-group').forEach(group => {
+      const input = group.querySelector('input, textarea');
+      const error = group.querySelector('.form-error');
+      if (!input.validity.valid) {
+        group.classList.add('invalid');
+        error.textContent = input.validationMessage;
+        isValid = false;
+      } else {
+        group.classList.remove('invalid');
+        error.textContent = '';
+      }
+    });
+
+    if (isValid) {
+      form.submit();
+    }
+  });
+
+  // Botão Voltar ao Topo
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Esconder tela de carregamento
   window.addEventListener('load', () => {
     document.getElementById('loading').style.display = 'none';
   });
