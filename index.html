@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Igor Bonds | Soluções em Tecnologia da Informação</title>
-  <meta name="description" content="Soluções inteligentes em tecnologia da informação por Igor Bonds. Consultoria, desenvolvimento e inovação.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Igor Bonds - Soluções em Tecnologia da Informação.">
+  <title>Igor Bonds | Tecnologia da Informação</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script defer src="script.js"></script>
 </head>
-
 <body>
   <header class="header">
     <div class="container">
-      <a href="#home" class="logo">
-        <img src="logo.png" alt="Igor Bonds Logo">
-      </a>
-      <nav class="nav">
-        <ul class="nav-list">
+      <a href="#" class="logo">Igor Bonds</a>
+      <nav class="nav" id="nav">
+        <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#servicos">Serviços</a></li>
@@ -30,93 +25,73 @@
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
+      <button class="menu-toggle" id="menu-toggle">&#9776;</button>
     </div>
   </header>
 
-  <section id="home" class="hero">
-    <div class="container">
-      <h1>Transformando Ideias em Soluções Digitais</h1>
-      <p>Consultoria e desenvolvimento em TI para impulsionar seu negócio.</p>
-      <a href="#contato" class="btn-primario">Fale Conosco</a>
-    </div>
-  </section>
-
-  <section id="sobre" class="sobre">
-    <div class="container">
-      <h2>Sobre Nós</h2>
-      <p>Somos uma empresa especializada em soluções de tecnologia da informação, oferecendo serviços de alta qualidade com foco em resultados. Com anos de experiência, atendemos empresas que buscam inovação, eficiência e segurança em seus processos.</p>
-    </div>
-  </section>
-
-  <section id="servicos" class="servicos">
-    <div class="container">
-      <h2>Serviços</h2>
-      <ul class="servicos-lista">
-        <li>
-          <h3>Consultoria em TI</h3>
-          <p>Planejamento estratégico para alavancar sua infraestrutura digital.</p>
-        </li>
-        <li>
-          <h3>Desenvolvimento Web</h3>
-          <p>Sites modernos, responsivos e otimizados para todos os dispositivos.</p>
-        </li>
-        <li>
-          <h3>Suporte Técnico</h3>
-          <p>Atendimento ágil e eficaz para manter seu negócio funcionando.</p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-      <h2>Portfólio</h2>
-      <p>Confira alguns dos nossos projetos desenvolvidos.</p>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">Projeto 1</div>
-        <div class="portfolio-item">Projeto 2</div>
-        <div class="portfolio-item">Projeto 3</div>
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <h1>Bem-vindo à Igor Bonds</h1>
+        <p>Soluções personalizadas em tecnologia da informação para você ou seu negócio.</p>
+        <a href="#contato" class="btn">Entre em Contato</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="depoimentos" class="depoimentos">
-    <div class="container">
-      <h2>Depoimentos</h2>
-      <div class="depoimentos-lista">
+    <section id="sobre" class="section">
+      <div class="container">
+        <h2>Sobre</h2>
+        <p>Somos especialistas em tecnologia da informação, com foco em soluções práticas, modernas e funcionais para transformar digitalmente empresas e pessoas.</p>
+      </div>
+    </section>
+
+    <section id="servicos" class="section bg-light">
+      <div class="container">
+        <h2>Serviços</h2>
+        <ul class="cards">
+          <li>Desenvolvimento Web</li>
+          <li>Consultoria em TI</li>
+          <li>Automação de Processos</li>
+          <li>Suporte Técnico</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <div class="container">
+        <h2>Portfólio</h2>
+        <p>Em breve você verá nossos projetos por aqui. Fique de olho!</p>
+      </div>
+    </section>
+
+    <section id="depoimentos" class="section bg-light">
+      <div class="container">
+        <h2>Depoimentos</h2>
         <blockquote>
-          <p>"Serviço excelente! A Igor Bonds superou nossas expectativas."</p>
-          <cite>— Cliente Satisfeito</cite>
-        </blockquote>
-        <blockquote>
-          <p>"Profissionais competentes e atendimento personalizado. Recomendo!"</p>
-          <cite>— Parceiro Comercial</cite>
+          <p>"Profissional de excelência! Entregou tudo com qualidade e no prazo."</p>
+          <cite>— Cliente satisfeito</cite>
         </blockquote>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contato" class="contato">
-    <div class="container">
-      <h2>Contato</h2>
-      <form action="#" method="post" class="form-contato">
-        <input type="text" name="nome" placeholder="Seu nome" required>
-        <input type="email" name="email" placeholder="Seu e-mail" required>
-        <textarea name="mensagem" placeholder="Sua mensagem" required></textarea>
-        <button type="submit" class="btn-primario">Enviar</button>
-      </form>
-    </div>
-  </section>
-
-  <a href="https://wa.me/5511999999999" class="whatsapp-btn" target="_blank" aria-label="Converse pelo WhatsApp">
-    <img src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png" alt="WhatsApp">
-  </a>
+    <section id="contato" class="section">
+      <div class="container">
+        <h2>Contato</h2>
+        <p>Telefone: <a href="tel:+5565998036616">(65) 99803-6616</a></p>
+        <p>Email: <a href="mailto:igorbondes@gmail.com">igorbondes@gmail.com</a></p>
+        <a href="https://wa.me/5565998036616" class="btn whatsapp-btn">Fale via WhatsApp</a>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 Igor Bonds. Todos os direitos reservados.</p>
     </div>
   </footer>
-</body>
 
+  <a href="https://wa.me/5565998036616" class="whatsapp-float" target="_blank" aria-label="Contato via WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" width="50" height="50">
+  </a>
+</body>
 </html>
