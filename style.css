@@ -1,3 +1,4 @@
+/* === Variáveis === */
 :root {
   --primary-color: #1b263b; /* Azul escuro */
   --secondary-color: #00a78e; /* Ciano vibrante */
@@ -8,14 +9,17 @@
   --dark-color: #000000; /* Preto */
   --dark-bg: #1e2a44; /* Fundo modo escuro */
   --dark-text: #e0e1dd; /* Texto modo escuro */
+  --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
+/* === Modo Escuro === */
 [data-theme="dark"] {
   --background-color: var(--dark-bg);
   --text-color: var(--dark-text);
   --light-color: #2e3b55;
 }
 
+/* === Reset e Base === */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -23,7 +27,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   scroll-behavior: smooth;
@@ -31,25 +35,80 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* === Skip to Content === */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background: var(--secondary-color);
+  color: var(--light-color);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 4000;
+}
+
+.skip-link:focus {
+  top: 20px;
+}
+
+/* === Barra de Progresso === */
 #progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 0;
   height: 4px;
-  background-color: var(--secondary-color);
+  background: var(--gradient);
   z-index: 3000;
   transition: width 0.2s ease;
 }
 
+/* === Tela de Carregamento === */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+}
+
+.spinner {
+  animation: rotate 1s linear infinite;
+  width: 50px;
+  height: 50px;
+}
+
+.spinner .path {
+  stroke: var(--secondary-color);
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+  0% { stroke-dasharray: 1, 150; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 90, 150; stroke-dashoffset: -35; }
+  100% { stroke-dasharray: 90, 150; stroke-dashoffset: -124; }
+}
+
+/* === Container === */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+/* === Cabeçalho === */
 header {
-  background-color: var(--primary-color);
+  background: var(--primary-color);
   color: var(--light-color);
   padding: 15px 0;
   position: fixed;
@@ -81,13 +140,29 @@ header .container {
   text-decoration: none;
   font-size: 1rem;
   font-weight: 400;
+  position: relative;
   transition: color 0.3s ease;
 }
 
 .nav-link:hover,
 .nav-link:focus {
   color: var(--secondary-color);
-  outline: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: var(--secondary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
 }
 
 .hamburger {
@@ -131,8 +206,38 @@ header .container {
   transform: scale(1.1);
 }
 
+/* === Tooltips === */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color);
+  color: var(--light-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* === Hero Section === */
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=1920&h=600') center/cover no-repeat;
+  background-attachment: fixed;
   color: var(--light-color);
   text-align: center;
   padding: 150px 20px;
@@ -152,22 +257,23 @@ header .container {
 }
 
 .cta-button {
-  background-color: var(--secondary-color);
+  background: var(--gradient);
   color: var(--light-color);
   padding: 12px 30px;
   border-radius: 5px;
   text-decoration: none;
   font-weight: 700;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: slideIn 1s ease-out 0.4s;
 }
 
 .cta-button:hover,
 .cta-button:focus {
-  background-color: var(--primary-color);
-  outline: none;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* === Seções Gerais === */
 section {
   padding: 80px 20px;
 }
@@ -197,6 +303,7 @@ h2 {
   margin-bottom: 40px;
 }
 
+/* === Serviços === */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -204,22 +311,28 @@ h2 {
 }
 
 .service-card {
-  background-color: var(--light-color);
+  background: var(--light-color);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .service-card i {
   font-size: 2rem;
   color: var(--secondary-color);
   margin-bottom: 10px;
+  transition: transform 0.3s ease;
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
+.service-card:hover i {
+  transform: scale(1.1);
 }
 
 .service-card h3 {
@@ -227,6 +340,7 @@ h2 {
   margin-bottom: 10px;
 }
 
+/* === Portfólio === */
 .portfolio-filters {
   display: flex;
   justify-content: center;
@@ -235,19 +349,20 @@ h2 {
 }
 
 .filter-btn {
-  background-color: var(--light-color);
+  background: var(--light-color);
   border: 1px solid var(--secondary-color);
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .filter-btn.active,
 .filter-btn:hover {
-  background-color: var(--secondary-color);
+  background: var(--secondary-color);
   color: var(--light-color);
+  transform: translateY(-2px);
 }
 
 .portfolio-grid {
@@ -257,7 +372,8 @@ h2 {
 }
 
 .project {
-  background-color: var(--light-color);
+  position: relative;
+  background: var(--light-color);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -272,8 +388,40 @@ h2 {
   width: 100%;
   height: auto;
   cursor: pointer;
+  transition: opacity 0.3s ease;
 }
 
+.project:hover img {
+  opacity: 0.8;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project:hover .project-overlay {
+  opacity: 1;
+}
+
+.share-btn {
+  background: var(--secondary-color);
+  color: var(--light-color);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.share-btn:hover {
+  transform: scale(1.1);
+}
+
+/* === Depoimentos === */
 .testimonials-carousel {
   position: relative;
   max-width: 800px;
@@ -282,17 +430,45 @@ h2 {
 }
 
 .testimonial {
-  background-color: var(--light-color);
+  background: var(--light-color);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
   display: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .testimonial.active {
   display: block;
   opacity: 1;
+  transform: translateX(0);
+}
+
+/* === Blog === */
+.blog-search {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto 20px;
+}
+
+#blog-search {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+#blog-search:focus {
+  outline: 2px solid var(--secondary-color);
+}
+
+.blog-search i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--secondary-color);
 }
 
 .blog-grid {
@@ -302,7 +478,7 @@ h2 {
 }
 
 .blog-card {
-  background-color: var(--light-color);
+  background: var(--light-color);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -343,6 +519,7 @@ h2 {
   color: var(--primary-color);
 }
 
+/* === Contato === */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -363,12 +540,18 @@ h2 {
 
 .contact-info i {
   color: var(--secondary-color);
+  transition: transform 0.3s ease;
+}
+
+.contact-info p:hover i {
+  transform: scale(1.1);
 }
 
 .map-container {
   margin-top: 20px;
   border-radius: 8px;
   overflow: hidden;
+  background: var(--light-color);
 }
 
 .contact-form {
@@ -393,17 +576,18 @@ h2 {
   border: 1px solid var(--secondary-color);
   border-radius: 5px;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
 }
 
 .form-group textarea {
   resize: vertical;
   min-height: 120px;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: 2px solid var(--secondary-color);
-  outline-offset: 2px;
 }
 
 .form-error {
@@ -412,24 +596,31 @@ h2 {
   position: absolute;
   bottom: -20px;
   left: 0;
-}
-
-.form-message {
-  margin-top: 10px;
-  font-size: 1rem;
-  color: var(--text-color);
-}
-
-.form-message.success {
-  color: #2e7d32;
+  display: none;
 }
 
 .form-group.invalid .form-error {
   display: block;
 }
 
+.form-message {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.form-message.visible {
+  opacity: 1;
+}
+
+.form-message.success {
+  color: #2e7d32;
+}
+
 .botao {
-  background-color: var(--primary-color);
+  background: var(--gradient);
   color: var(--light-color);
   padding: 12px 30px;
   border: none;
@@ -437,15 +628,16 @@ h2 {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .botao:hover,
 .botao:focus {
-  background-color: var(--secondary-color);
-  outline: none;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* === Lightbox === */
 #lightbox {
   display: none;
   position: fixed;
@@ -524,11 +716,15 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: border 0.3s ease;
+  transition: border 0.3s ease, transform 0.3s ease;
 }
 
 .lightbox-thumbnail.active {
   border: 2px solid var(--secondary-color);
+}
+
+.lightbox-thumbnail:hover {
+  transform: scale(1.1);
 }
 
 .lightbox-prev,
@@ -539,7 +735,7 @@ h2 {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .lightbox-prev,
@@ -556,6 +752,7 @@ h2 {
 .lightbox-next:hover,
 .lightbox-close:hover {
   background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
   opacity: 1;
 }
 
@@ -575,11 +772,12 @@ h2 {
   padding: 5px 10px;
 }
 
+/* === Botão Voltar ao Topo === */
 #back-to-top {
   position: fixed;
   bottom: 80px;
   left: 20px;
-  background-color: var(--secondary-color);
+  background: var(--secondary-color);
   color: var(--light-color);
   padding: 10px 15px;
   border-radius: 50%;
@@ -598,11 +796,12 @@ h2 {
   transform: translateY(-5px);
 }
 
+/* === WhatsApp === */
 .whatsapp-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #25d366;
+  background: #25d366;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -618,11 +817,11 @@ h2 {
 .whatsapp-button:hover,
 .whatsapp-button:focus {
   transform: scale(1.1);
-  outline: none;
 }
 
+/* === Rodapé === */
 footer {
-  background-color: var(--primary-color);
+  background: var(--primary-color);
   color: var(--light-color);
   padding: 40px 20px;
 }
@@ -643,31 +842,26 @@ footer .container {
   color: var(--light-color);
   text-decoration: none;
   font-size: 1.2rem;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-links a:hover {
   color: var(--secondary-color);
+  transform: scale(1.1);
 }
 
-/* Animações */
+/* === Animações === */
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Media Queries */
+/* === Media Queries === */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
     flex-direction: column;
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     position: absolute;
     top: 70px;
     right: 20px;
@@ -686,6 +880,7 @@ footer .container {
 
   .hero {
     padding: 100px 20px;
+    background-attachment: scroll;
   }
 
   .hero-content h1 {
