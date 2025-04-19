@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Igor Bonds - Soluções inovadoras em tecnologia da informação para empresas. Desenvolvimento web, consultoria e mais." />
+  <meta name="keywords" content="tecnologia, desenvolvimento web, consultoria TI, soluções digitais, Igor Bonds" />
+  <meta name="author" content="Igor Bonds" />
   <title>Igor Bonds | Tecnologia da Informação</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <!-- Tela de carregamento -->
@@ -13,74 +17,129 @@
 
   <!-- Cabeçalho -->
   <header>
-    <div class="logo">Igor Bonds</div>
-    <nav>
-      <button class="hamburger" aria-label="Abrir ou fechar o menu de navegação" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#sobre" class="nav-link">Sobre</a></li>
-        <li><a href="#servicos" class="nav-link">Serviços</a></li>
-        <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
-        <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
-        <li><a href="#contato" class="nav-link">Contato</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <div class="logo">Igor Bonds</div>
+      <nav>
+        <button class="hamburger" aria-label="Abrir ou fechar o menu de navegação" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+          <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <!-- Conteúdo principal -->
   <main>
-    <section id="home" class="section-anim">
-      <h1>Bem-vindo à Igor Bonds</h1>
-      <p>Soluções inovadoras em tecnologia da informação para o seu negócio.</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Soluções em Tecnologia para o Seu Negócio</h1>
+        <p>Transformamos ideias em realidade com inovação e qualidade.</p>
+        <a href="#contato" class="cta-button">Entre em Contato</a>
+      </div>
     </section>
+
+    <!-- Sobre -->
     <section id="sobre" class="section-anim">
-      <h2>Sobre Nós</h2>
-      <p>Somos uma empresa apaixonada por tecnologia, com mais de 10 anos de experiência em desenvolvimento web e soluções digitais.</p>
+      <div class="container">
+        <h2>Sobre Nós</h2>
+        <p>Somos uma empresa líder em tecnologia da informação, com mais de 10 anos de experiência entregando soluções digitais personalizadas. Nossa missão é impulsionar o sucesso dos nossos clientes com inovação e excelência.</p>
+      </div>
     </section>
+
+    <!-- Serviços -->
     <section id="servicos" class="section-anim">
-      <h2>Nossos Serviços</h2>
-      <div class="service">Desenvolvimento Web</div>
-      <div class="service">Consultoria em TI</div>
-      <div class="service">Soluções em Nuvem</div>
+      <div class="container">
+        <h2>Nossos Serviços</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Desenvolvimento Web</h3>
+            <p>Sites modernos, responsivos e otimizados para o seu negócio.</p>
+          </div>
+          <div class="service-card">
+            <h3>Consultoria em TI</h3>
+            <p>Estratégias para melhorar sua infraestrutura tecnológica.</p>
+          </div>
+          <div class="service-card">
+            <h3>Soluções em Nuvem</h3>
+            <p>Segurança e escalabilidade para seus dados.</p>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- Portfólio -->
     <section id="portfolio" class="section-anim">
-      <h2>Portfólio</h2>
-      <div class="project" data-image="https://via.placeholder.com/600x400" data-caption="Projeto 1" data-thumbnail="https://via.placeholder.com/100x60">
-        <img src="https://via.placeholder.com/300x200" alt="Projeto 1" />
-      </div>
-      <div class="project" data-image="https://via.placeholder.com/600x400/FF0000" data-caption="Projeto 2" data-thumbnail="https://via.placeholder.com/100x60/FF0000">
-        <img src="https://via.placeholder.com/300x200/FF0000" alt="Projeto 2" />
-      </div>
-      <div class="project" data-image="https://via.placeholder.com/600x400/00FF00" data-caption="Projeto 3" data-thumbnail="https://via.placeholder.com/100x60/00FF00">
-        <img src="https://via.placeholder.com/300x200/00FF00" alt="Projeto 3" />
+      <div class="container">
+        <h2>Portfólio</h2>
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="web">Web</button>
+          <button class="filter-btn" data-filter="mobile">Mobile</button>
+        </div>
+        <div class="portfolio-grid">
+          <div class="project" data-image="https://via.placeholder.com/600x400" data-caption="Projeto Web 1" data-thumbnail="https://via.placeholder.com/100x60" data-category="web">
+            <img src="https://via.placeholder.com/300x200" alt="Projeto Web 1" loading="lazy" />
+          </div>
+          <div class="project" data-image="https://via.placeholder.com/600x400/FF0000" data-caption="Projeto Mobile 1" data-thumbnail="https://via.placeholder.com/100x60/FF0000" data-category="mobile">
+            <img src="https://via.placeholder.com/300x200/FF0000" alt="Projeto Mobile 1" loading="lazy" />
+          </div>
+          <div class="project" data-image="https://via.placeholder.com/600x400/00FF00" data-caption="Projeto Web 2" data-thumbnail="https://via.placeholder.com/100x60/00FF00" data-category="web">
+            <img src="https://via.placeholder.com/300x200/00FF00" alt="Projeto Web 2" loading="lazy" />
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- Depoimentos -->
     <section id="depoimentos" class="section-anim">
-      <h2>Depoimentos</h2>
-      <div class="testimonial">"Serviço excepcional!" - Cliente 1</div>
-      <div class="testimonial">"Superou nossas expectativas." - Cliente 2</div>
+      <div class="container">
+        <h2>Depoimentos</h2>
+        <div class="testimonials-carousel">
+          <div class="testimonial active">"Serviço excepcional! Transformaram nosso site em tempo recorde." - Cliente 1</div>
+          <div class="testimonial">"A consultoria da Igor Bonds foi essencial para nossa transformação digital." - Cliente 2</div>
+          <div class="testimonial">"Soluções confiáveis e atendimento impecável!" - Cliente 3</div>
+        </div>
+      </div>
     </section>
+
+    <!-- Contato -->
     <section id="contato" class="section-anim">
-      <h2>Contato</h2>
-      <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Seu email" required />
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
-        <button type="submit" class="botao">Enviar</button>
-      </form>
+      <div class="container">
+        <h2>Contato</h2>
+        <form class="contact-form" action="https://formspree.io/f/your-id" method="POST" novalidate>
+          <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+            <span class="form-error" aria-hidden="true"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Seu email" required />
+            <span class="form-error" aria-hidden="true"></span>
+          </div>
+          <div class="form-group">
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
+            <span class="form-error" aria-hidden="true"></span>
+          </div>
+          <button type="submit" class="botao">Enviar</button>
+        </form>
+      </div>
     </section>
   </main>
 
   <!-- Lightbox do Portfólio -->
   <div id="lightbox" role="dialog" aria-hidden="true" tabindex="-1">
-    <button class="lightbox-prev" aria-label="Imagem anterior">◄</button>
     <div class="lightbox-content">
       <img class="lightbox-image" src="" alt="Imagem do portfólio" />
       <div class="lightbox-info">
@@ -89,9 +148,13 @@
       </div>
       <div class="lightbox-thumbnails"></div>
     </div>
+    <button class="lightbox-prev" aria-label="Imagem anterior">◄</button>
     <button class="lightbox-next" aria-label="Próxima imagem">►</button>
     <button class="lightbox-close" aria-label="Fechar lightbox">×</button>
   </div>
+
+  <!-- Botão Voltar ao Topo -->
+  <button id="back-to-top" aria-label="Voltar ao topo">↑</button>
 
   <!-- Botão WhatsApp -->
   <a href="https://wa.me/1234567890" class="whatsapp-button" aria-label="Fale conosco pelo WhatsApp">
@@ -100,7 +163,14 @@
 
   <!-- Rodapé -->
   <footer>
-    <p>© <span id="year"></span> Igor Bonds. Todos os direitos reservados.</p>
+    <div class="container">
+      <p>© <span id="year"></span> Igor Bonds. Todos os direitos reservados.</p>
+      <div class="footer-links">
+        <a href="https://facebook.com" aria-label="Facebook">Facebook</a>
+        <a href="https://linkedin.com" aria-label="LinkedIn">LinkedIn</a>
+        <a href="mailto:contact@igorbonds.com" aria-label="Email">Email</a>
+      </div>
+    </div>
   </footer>
 
   <!-- Script JS -->
