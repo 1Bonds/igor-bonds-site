@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-
-
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Igor Bonds | Tecnologia da Informação</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <!-- Tela de carregamento -->
-  <div id="loading">Carregando...</div>
-
+  <div id="loading" aria-hidden="true">Carregando...</div>
 
   <!-- Cabeçalho -->
-
-
   <header>
     <div class="logo">Igor Bonds</div>
     <nav>
-      <div class="hamburger">&#9776;</div>
+      <button class="hamburger" aria-label="Abrir ou fechar o menu de navegação" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#home" class="nav-link active">Home</a></li>
         <li><a href="#sobre" class="nav-link">Sobre</a></li>
@@ -32,49 +31,68 @@
     </nav>
   </header>
 
-
-  <!-- Seções principais -->
-
-
-  <section id="home">Bem-vindo à Igor Bonds</section>
-  <section id="sobre">Sobre nós</section>
-  <section id="servicos">Nossos Serviços</section>
-  <section id="portfolio">Portfólio</section>
-  <section id="depoimentos">Depoimentos</section>
-  <section id="contato">
-    <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
-      <input type="text" name="nome" placeholder="Seu nome" required />
-      <input type="email" name="email" placeholder="Seu email" required />
-      <textarea name="mensagem" placeholder="Sua mensagem" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-
+  <!-- Conteúdo principal -->
+  <main>
+    <section id="home" class="section-anim">
+      <h1>Bem-vindo à Igor Bonds</h1>
+      <p>Soluções inovadoras em tecnologia da informação para o seu negócio.</p>
+    </section>
+    <section id="sobre" class="section-anim">
+      <h2>Sobre Nós</h2>
+      <p>Somos uma empresa apaixonada por tecnologia, com mais de 10 anos de experiência em desenvolvimento web e soluções digitais.</p>
+    </section>
+    <section id="servicos" class="section-anim">
+      <h2>Nossos Serviços</h2>
+      <div class="service">Desenvolvimento Web</div>
+      <div class="service">Consultoria em TI</div>
+      <div class="service">Soluções em Nuvem</div>
+    </section>
+    <section id="portfolio" class="section-anim">
+      <h2>Portfólio</h2>
+      <div class="project" data-image="https://via.placeholder.com/600x400" data-caption="Projeto 1">
+        <img src="https://via.placeholder.com/300x200" alt="Projeto 1" />
+      </div>
+      <div class="project" data-image="https://via.placeholder.com/600x400" data-caption="Projeto 2">
+        <img src="https://via.placeholder.com/300x200" alt="Projeto 2" />
+      </div>
+    </section>
+    <section id="depoimentos" class="section-anim">
+      <h2>Depoimentos</h2>
+      <div class="testimonial">"Serviço excepcional!" - Cliente 1</div>
+      <div class="testimonial">"Superou nossas expectativas." - Cliente 2</div>
+    </section>
+    <section id="contato" class="section-anim">
+      <h2>Contato</h2>
+      <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Seu email" required />
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
+        <button type="submit" class="botao">Enviar</button>
+      </form>
+    </section>
+  </main>
 
   <!-- Lightbox do Portfólio -->
-
-
-  <div id="lightbox">
-    <span class="lightbox-close">&times;</span>
-    <img class="lightbox-image" src="" alt="" />
+  <div id="lightbox" role="dialog" aria-hidden="true">
+    <span class="lightbox-close" aria-label="Fechar lightbox">×</span>
+    <img class="lightbox-image" src="" alt="Imagem do portfólio" />
     <div class="lightbox-caption"></div>
   </div>
 
+  <!-- Botão WhatsApp -->
+  <a href="https://wa.me/1234567890" class="whatsapp-button" aria-label="Fale conosco pelo WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  </a>
 
   <!-- Rodapé -->
-
-
   <footer>
-    <p>&copy; <span id="year"></span> Igor Bonds. Todos os direitos reservados.</p>
+    <p>© <span id="year"></span> Igor Bonds. Todos os direitos reservados.</p>
   </footer>
 
-
   <!-- Script JS -->
-
-
   <script src="script.js"></script>
-
-
 </body>
 </html>
-
