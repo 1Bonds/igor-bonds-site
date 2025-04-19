@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #1b263b;
-  --secondary-color: #778da9;
-  --accent-color: #e0e1dd;
-  --background-color: #f8f9fa;
-  --text-color: #0d1b2a;
-  --light-color: #ffffff;
-  --dark-color: #000000;
+  --primary-color: #1b263b; /* Azul escuro */
+  --secondary-color: #00a78e; /* Ciano vibrante */
+  --accent-color: #e0e1dd; /* Cinza claro */
+  --background-color: #f8f9fa; /* Fundo claro */
+  --text-color: #0d1b2a; /* Texto escuro */
+  --light-color: #ffffff; /* Branco */
+  --dark-color: #000000; /* Preto */
 }
 
 * {
@@ -15,17 +15,23 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   scroll-behavior: smooth;
   line-height: 1.6;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 header {
   background-color: var(--primary-color);
   color: var(--light-color);
-  padding: 15px 20px;
+  padding: 15px 0;
   position: fixed;
   width: 100%;
   top: 0;
@@ -33,17 +39,15 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-nav {
+header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
- ：「width: 1200px;
-  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 .nav-links {
@@ -56,12 +60,13 @@ nav {
   color: var(--light-color);
   text-decoration: none;
   font-size: 1rem;
+  font-weight: 400;
   transition: color 0.3s ease;
 }
 
 .nav-link:hover,
 .nav-link:focus {
-  color: var(--accent-color);
+  color: var(--secondary-color);
   outline: none;
 }
 
@@ -93,20 +98,48 @@ nav {
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-main {
-  margin-top: 80px;
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x600') center/cover no-repeat;
+  color: var(--light-color);
+  text-align: center;
+  padding: 150px 20px;
+  margin-top: 70px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+  background-color: var(--primary-color);
+  outline: none;
 }
 
 section {
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 80px 20px;
 }
 
 .section-anim {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .section-anim.animated {
@@ -117,70 +150,166 @@ section {
 h1, h2 {
   color: var(--primary-color);
   text-align: center;
-  margin-bottom: 20px;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
 }
 
-.service, .project, .testimonial {
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
   background-color: var(--light-color);
   padding: 20px;
-  margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-}
-
-.project img {
-  max-width: 100%;
-  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.project img:hover {
-  transform: scale(1.05);
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  background-color: var(--light-color);
+  border: 1px solid var(--secondary-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.project {
+  background-color: var(--light-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+}
+
+.project img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.testimonials-carousel {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.testimonial {
+  background-color: var(--light-color);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  display: none;
+  transition: opacity 0.5s ease;
+}
+
+.testimonial.active {
+  display: block;
+  opacity: 1;
 }
 
 .contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
   max-width: 600px;
   margin: 0 auto;
 }
 
-.contact-form label {
-  font-weight: bold;
-  text-align: left;
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
 }
 
-.contact-form input,
-.contact-form textarea {
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
   padding: 10px;
   border: 1px solid var(--secondary-color);
   border-radius: 5px;
   font-size: 1rem;
 }
 
-.contact-form textarea {
+.form-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+.form-error {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.form-group.invalid .form-error {
+  display: block;
 }
 
 .botao {
   background-color: var(--primary-color);
   color: var(--light-color);
-  padding: 12px 20px;
+  padding: 12px 30px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
+  font-weight: 700;
   transition: background-color 0.3s ease;
 }
 
@@ -224,7 +353,12 @@ h2 {
   max-height: 60vh;
   border-radius: 8px;
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+.lightbox-image.zoomed {
+  transform: scale(1.2);
 }
 
 .lightbox-image.fade {
@@ -241,7 +375,7 @@ h2 {
 
 .lightbox-counter {
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .lightbox-caption {
@@ -267,7 +401,7 @@ h2 {
 }
 
 .lightbox-thumbnail.active {
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--secondary-color);
 }
 
 .lightbox-prev,
@@ -316,6 +450,29 @@ h2 {
   border: none;
 }
 
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 10px 15px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  transform: translateY(-5px);
+}
+
 .whatsapp-button {
   position: fixed;
   bottom: 20px;
@@ -345,9 +502,30 @@ h2 {
 footer {
   background-color: var(--primary-color);
   color: var(--light-color);
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+  padding: 40px 20px;
+}
+
+footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: var(--light-color);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--secondary-color);
 }
 
 /* Media Queries */
@@ -372,12 +550,16 @@ footer {
     display: block;
   }
 
-  h1 {
-    font-size: 2rem;
+  .hero {
+    padding: 100px 20px;
   }
 
-  h2 {
-    font-size: 1.8rem;
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
   }
 
   .lightbox-prev,
@@ -399,7 +581,8 @@ footer {
     font-size: 1.5rem;
   }
 
-  .whatsapp-button {
+  .whatsapp-button,
+  #back-to-top {
     width: 50px;
     height: 50px;
   }
@@ -420,5 +603,13 @@ footer {
   .lightbox-thumbnail {
     width: 50px;
     height: 30px;
+  }
+
+  .portfolio-filters {
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 8px 15px;
   }
 }
