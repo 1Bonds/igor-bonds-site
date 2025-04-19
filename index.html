@@ -6,12 +6,21 @@
   <meta name="description" content="Igor Bonds - Soluções inovadoras em tecnologia da informação para empresas. Desenvolvimento web, consultoria e mais." />
   <meta name="keywords" content="tecnologia, desenvolvimento web, consultoria TI, soluções digitais, Igor Bonds" />
   <meta name="author" content="Igor Bonds" />
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Igor Bonds | Tecnologia da Informação" />
+  <meta property="og:description" content="Soluções inovadoras em tecnologia para o seu negócio." />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630" />
+  <meta property="og:url" content="https://1bonds.github.io" />
   <title>Igor Bonds | Tecnologia da Informação</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
+  <!-- Barra de progresso -->
+  <div id="progress-bar"></div>
+
   <!-- Tela de carregamento -->
   <div id="loading" aria-hidden="true">Carregando...</div>
 
@@ -31,45 +40,52 @@
           <li><a href="#servicos" class="nav-link">Serviços</a></li>
           <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
           <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+          <li><a href="#blog" class="nav-link">Blog</a></li>
           <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
       </nav>
+      <button id="theme-toggle" aria-label="Alternar entre modo claro e escuro">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </header>
 
   <!-- Conteúdo principal -->
   <main>
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero section-anim" role="region" aria-labelledby="home-title">
       <div class="hero-content">
-        <h1>Soluções em Tecnologia para o Seu Negócio</h1>
+        <h1 id="home-title">Soluções em Tecnologia para o Seu Negócio</h1>
         <p>Transformamos ideias em realidade com inovação e qualidade.</p>
         <a href="#contato" class="cta-button">Entre em Contato</a>
       </div>
     </section>
 
     <!-- Sobre -->
-    <section id="sobre" class="section-anim">
+    <section id="sobre" class="section-anim" role="region" aria-labelledby="sobre-title">
       <div class="container">
-        <h2>Sobre Nós</h2>
+        <h2 id="sobre-title">Sobre Nós</h2>
         <p>Somos uma empresa líder em tecnologia da informação, com mais de 10 anos de experiência entregando soluções digitais personalizadas. Nossa missão é impulsionar o sucesso dos nossos clientes com inovação e excelência.</p>
       </div>
     </section>
 
     <!-- Serviços -->
-    <section id="servicos" class="section-anim">
+    <section id="servicos" class="section-anim" role="region" aria-labelledby="servicos-title">
       <div class="container">
-        <h2>Nossos Serviços</h2>
+        <h2 id="servicos-title">Nossos Serviços</h2>
         <div class="services-grid">
           <div class="service-card">
+            <i class="fas fa-code"></i>
             <h3>Desenvolvimento Web</h3>
             <p>Sites modernos, responsivos e otimizados para o seu negócio.</p>
           </div>
           <div class="service-card">
+            <i class="fas fa-cogs"></i>
             <h3>Consultoria em TI</h3>
             <p>Estratégias para melhorar sua infraestrutura tecnológica.</p>
           </div>
           <div class="service-card">
+            <i class="fas fa-cloud"></i>
             <h3>Soluções em Nuvem</h3>
             <p>Segurança e escalabilidade para seus dados.</p>
           </div>
@@ -78,32 +94,32 @@
     </section>
 
     <!-- Portfólio -->
-    <section id="portfolio" class="section-anim">
+    <section id="portfolio" class="section-anim" role="region" aria-labelledby="portfolio-title">
       <div class="container">
-        <h2>Portfólio</h2>
+        <h2 id="portfolio-title">Portfólio</h2>
         <div class="portfolio-filters">
           <button class="filter-btn active" data-filter="all">Todos</button>
           <button class="filter-btn" data-filter="web">Web</button>
           <button class="filter-btn" data-filter="mobile">Mobile</button>
         </div>
         <div class="portfolio-grid">
-          <div class="project" data-image="https://via.placeholder.com/600x400" data-caption="Projeto Web 1" data-thumbnail="https://via.placeholder.com/100x60" data-category="web">
-            <img src="https://via.placeholder.com/300x200" alt="Projeto Web 1" loading="lazy" />
+          <div class="project" data-image="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382" data-caption="Plataforma E-commerce" data-thumbnail="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=100&h=60" data-category="web">
+            <img src="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=300&h=200" alt="Plataforma E-commerce" loading="lazy" />
           </div>
-          <div class="project" data-image="https://via.placeholder.com/600x400/FF0000" data-caption="Projeto Mobile 1" data-thumbnail="https://via.placeholder.com/100x60/FF0000" data-category="mobile">
-            <img src="https://via.placeholder.com/300x200/FF0000" alt="Projeto Mobile 1" loading="lazy" />
+          <div class="project" data-image="https://images.unsplash.com/photo-1551288049-b1f3c3153758" data-caption="App de Produtividade" data-thumbnail="https://images.unsplash.com/photo-1551288049-b1f3c3153758?fit=crop&w=100&h=60" data-category="mobile">
+            <img src="https://images.unsplash.com/photo-1551288049-b1f3c3153758?fit=crop&w=300&h=200" alt="App de Produtividade" loading="lazy" />
           </div>
-          <div class="project" data-image="https://via.placeholder.com/600x400/00FF00" data-caption="Projeto Web 2" data-thumbnail="https://via.placeholder.com/100x60/00FF00" data-category="web">
-            <img src="https://via.placeholder.com/300x200/00FF00" alt="Projeto Web 2" loading="lazy" />
+          <div class="project" data-image="https://images.unsplash.com/photo-1498050108023-c5249f4df085" data-caption="Site Corporativo" data-thumbnail="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=100&h=60" data-category="web">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=300&h=200" alt="Site Corporativo" loading="lazy" />
           </div>
         </div>
       </div>
     </section>
 
     <!-- Depoimentos -->
-    <section id="depoimentos" class="section-anim">
+    <section id="depoimentos" class="section-anim" role="region" aria-labelledby="depoimentos-title">
       <div class="container">
-        <h2>Depoimentos</h2>
+        <h2 id="depoimentos-title">Depoimentos</h2>
         <div class="testimonials-carousel">
           <div class="testimonial active">"Serviço excepcional! Transformaram nosso site em tempo recorde." - Cliente 1</div>
           <div class="testimonial">"A consultoria da Igor Bonds foi essencial para nossa transformação digital." - Cliente 2</div>
@@ -112,28 +128,62 @@
       </div>
     </section>
 
-    <!-- Contato -->
-    <section id="contato" class="section-anim">
+    <!-- Blog -->
+    <section id="blog" class="section-anim" role="region" aria-labelledby="blog-title">
       <div class="container">
-        <h2>Contato</h2>
-        <form class="contact-form" action="https://formspree.io/f/your-id" method="POST" novalidate>
-          <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
-            <span class="form-error" aria-hidden="true"></span>
+        <h2 id="blog-title">Últimas Notícias</h2>
+        <div class="blog-grid">
+          <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1516321310764-8d4c29ee4382?fit=crop&w=300&h=200" alt="Artigo sobre tecnologia" loading="lazy" />
+            <h3>Como a IA está Transformando Negócios</h3>
+            <p>Descubra como a inteligência artificial pode impulsionar sua empresa.</p>
+            <a href="#" class="blog-link">Leia Mais</a>
           </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Seu email" required />
-            <span class="form-error" aria-hidden="true"></span>
+          <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=300&h=200" alt="Artigo sobre web" loading="lazy" />
+            <h3>5 Tendências em Desenvolvimento Web</h3>
+            <p>Fique por dentro das novidades que estão moldando a web.</p>
+            <a href="#" class="blog-link">Leia Mais</a>
           </div>
-          <div class="form-group">
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
-            <span class="form-error" aria-hidden="true"></span>
+        </div>
+        <a href="#" class="cta-button">Ver Mais Artigos</a>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="section-anim" role="region" aria-labelledby="contato-title">
+      <div class="container">
+        <h2 id="contato-title">Contato</h2>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Entre em Contato</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Rua da Tecnologia, 123, São Paulo, SP</p>
+            <p><i class="fas fa-phone"></i> (11) 1234-5678</p>
+            <p><i class="fas fa-envelope"></i> contact@igorbonds.com</p>
+            <div class="map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.123456789!2d-46.654321!3d-23.565432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8c8c8c8c8%3A0x1234567890!2sS%C3%A3o%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
           </div>
-          <button type="submit" class="botao">Enviar</button>
-        </form>
+          <form class="contact-form" action="https://formspree.io/f/your-id" method="POST" novalidate>
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+              <span class="form-error" aria-hidden="true"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" placeholder="Seu email" required />
+              <span class="form-error" aria-hidden="true"></span>
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem:</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
+              <span class="form-error" aria-hidden="true"></span>
+            </div>
+            <button type="submit" class="botao">Enviar</button>
+            <div class="form-message" aria-live="polite"></div>
+          </form>
+        </div>
       </div>
     </section>
   </main>
@@ -148,17 +198,17 @@
       </div>
       <div class="lightbox-thumbnails"></div>
     </div>
-    <button class="lightbox-prev" aria-label="Imagem anterior">◄</button>
-    <button class="lightbox-next" aria-label="Próxima imagem">►</button>
-    <button class="lightbox-close" aria-label="Fechar lightbox">×</button>
+    <button class="lightbox-prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox-next" aria-label="Próxima imagem"><i class="fas fa-chevron-right"></i></button>
+    <button class="lightbox-close" aria-label="Fechar lightbox"><i class="fas fa-times"></i></button>
   </div>
 
   <!-- Botão Voltar ao Topo -->
-  <button id="back-to-top" aria-label="Voltar ao topo">↑</button>
+  <button id="back-to-top" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
 
   <!-- Botão WhatsApp -->
   <a href="https://wa.me/1234567890" class="whatsapp-button" aria-label="Fale conosco pelo WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    <i class="fab fa-whatsapp"></i>
   </a>
 
   <!-- Rodapé -->
@@ -166,9 +216,9 @@
     <div class="container">
       <p>© <span id="year"></span> Igor Bonds. Todos os direitos reservados.</p>
       <div class="footer-links">
-        <a href="https://facebook.com" aria-label="Facebook">Facebook</a>
-        <a href="https://linkedin.com" aria-label="LinkedIn">LinkedIn</a>
-        <a href="mailto:contact@igorbonds.com" aria-label="Email">Email</a>
+        <a href="https://facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:contact@igorbonds.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </footer>
