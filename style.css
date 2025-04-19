@@ -8,19 +8,24 @@
   --dark-color: #000000;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   scroll-behavior: smooth;
+  line-height: 1.6;
 }
 
 header {
   background-color: var(--primary-color);
   color: var(--light-color);
-  padding: 20px 0;
+  padding: 15px 20px;
   position: fixed;
   width: 100%;
   top: 0;
@@ -28,18 +33,17 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar {
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
 }
 
 .nav-links {
@@ -51,7 +55,8 @@ header {
 .nav-link {
   color: var(--light-color);
   text-decoration: none;
-  transition: color 0.3s;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover,
@@ -62,58 +67,191 @@ header {
 
 .hamburger {
   display: none;
-  flex-direction: column;
+  background: none;
+  border: none;
   cursor: pointer;
-  gap: 4px;
 }
 
-.hamburger div {
+.hamburger span {
+  display: block;
   width: 25px;
   height: 3px;
   background-color: var(--light-color);
+  margin: 5px 0;
+  transition: all 0.3s ease;
 }
 
-.hero {
-  background-color: var(--secondary-color);
-  color: var(--light-color);
-  text-align: center;
-  padding: 100px 20px;
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+main {
   margin-top: 80px;
 }
 
 section {
-  padding: 80px 20px;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .section-anim {
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeIn 1s forwards;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.section-anim.animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.services, .portfolio, .testimonials, .contact {
-  background-color: var(--light-color);
-  margin-top: 40px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 40px;
+h1, h2 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  color: var(--primary-color);
+  font-size: 2rem;
 }
 
 .service, .project, .testimonial {
+  background-color: var(--light-color);
+  padding: 20px;
   margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.project img {
+  max-width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.project img:hover {
+  transform: scale(1.05);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form label {
+  font-weight: bold;
+  text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.botao {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.botao:hover,
+.botao:focus {
+  background-color: var(--secondary-color);
+  outline: none;
+}
+
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+#lightbox[aria-hidden="false"] {
+  display: flex;
+}
+
+.lightbox-image {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 8px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  color: var(--light-color);
+  cursor: pointer;
+}
+
+.lightbox-caption {
+  color: var(--light-color);
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-button img {
+  width: 40px;
+  height: 40px;
+}
+
+.whatsapp-button:hover,
+.whatsapp-button:focus {
+  transform: scale(1.1);
+  outline: none;
 }
 
 footer {
@@ -124,42 +262,6 @@ footer {
   margin-top: 40px;
 }
 
-.botao {
-  background-color: var(--primary-color);
-  color: var(--light-color);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.botao:hover,
-.botao:focus {
-  background-color: var(--secondary-color);
-  outline: none;
-}
-
-.whatsapp-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25d366;
-  color: white;
-  border-radius: 50%;
-  padding: 15px;
-  font-size: 24px;
-  text-decoration: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.whatsapp-button:hover,
-.whatsapp-button:focus {
-  transform: scale(1.1);
-  outline: none;
-}
-
 /* Media Queries */
 @media (max-width: 768px) {
   .nav-links {
@@ -167,10 +269,11 @@ footer {
     flex-direction: column;
     background-color: var(--primary-color);
     position: absolute;
-    top: 60px;
+    top: 70px;
     right: 20px;
     padding: 20px;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .nav-links.active {
@@ -178,6 +281,30 @@ footer {
   }
 
   .hamburger {
-    display: flex;
+    display: block;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .whatsapp-button {
+    width: 50px;
+    height: 50px;
+  }
+
+  .whatsapp-button img {
+    width: 30px;
+    height: 30px;
   }
 }
