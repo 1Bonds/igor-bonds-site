@@ -49,13 +49,13 @@
     </section>
     <section id="portfolio" class="section-anim">
       <h2>Portfólio</h2>
-      <div class="project" data-image="https://via.placeholder.com/600x400" data-caption="Projeto 1">
+      <div class="project" data-image="https://via.placeholder.com/600x400" data-caption="Projeto 1" data-thumbnail="https://via.placeholder.com/100x60">
         <img src="https://via.placeholder.com/300x200" alt="Projeto 1" />
       </div>
-      <div class="project" data-image="https://via.placeholder.com/600x400/FF0000" data-caption="Projeto 2">
+      <div class="project" data-image="https://via.placeholder.com/600x400/FF0000" data-caption="Projeto 2" data-thumbnail="https://via.placeholder.com/100x60/FF0000">
         <img src="https://via.placeholder.com/300x200/FF0000" alt="Projeto 2" />
       </div>
-      <div class="project" data-image="https://via.placeholder.com/600x400/00FF00" data-caption="Projeto 3">
+      <div class="project" data-image="https://via.placeholder.com/600x400/00FF00" data-caption="Projeto 3" data-thumbnail="https://via.placeholder.com/100x60/00FF00">
         <img src="https://via.placeholder.com/300x200/00FF00" alt="Projeto 3" />
       </div>
     </section>
@@ -81,8 +81,14 @@
   <!-- Lightbox do Portfólio -->
   <div id="lightbox" role="dialog" aria-hidden="true" tabindex="-1">
     <button class="lightbox-prev" aria-label="Imagem anterior">◄</button>
-    <img class="lightbox-image" src="" alt="Imagem do portfólio" />
-    <div class="lightbox-caption"></div>
+    <div class="lightbox-content">
+      <img class="lightbox-image" src="" alt="Imagem do portfólio" />
+      <div class="lightbox-info">
+        <div class="lightbox-counter"></div>
+        <div class="lightbox-caption"></div>
+      </div>
+      <div class="lightbox-thumbnails"></div>
+    </div>
     <button class="lightbox-next" aria-label="Próxima imagem">►</button>
     <button class="lightbox-close" aria-label="Fechar lightbox">×</button>
   </div>
